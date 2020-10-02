@@ -151,7 +151,7 @@ class ContentHandling {
      * Insert the style that should be applied to the conversion blocks.
      */
     public function style() {
-        $path = SERVEBOLT_CONV_BLOCK_PATH . '/assets/css/block-styling.css';
+        $path = SERVEBOLT_CONV_BLOCK_PATH . '/assets/dist/css/block-styling.css';
         if ( file_exists($path) ) {
             printf("<style>%s</style>", apply_filters('sb_conversion_block_styling', trim(file_get_contents($path))));
         }
@@ -161,7 +161,7 @@ class ContentHandling {
      * Insert the script that moves the block into the content.
      */
     public function script() {
-        $path = SERVEBOLT_CONV_BLOCK_PATH . '/assets/script/insertion-script.js';
+        $path = SERVEBOLT_CONV_BLOCK_PATH . '/assets/dist/js/insertion-script.js';
         if ( file_exists($path) ) {
             printf("<script>var sb_conv_blocks_class = '%s';\n%s</script>", $this->get_block_class(), trim(file_get_contents($path)));
         }

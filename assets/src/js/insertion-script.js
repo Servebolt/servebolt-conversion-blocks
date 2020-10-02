@@ -1,3 +1,5 @@
+import '../css/block-styling.scss';
+
 window.sb_conv_block_debug = false;
 
 (function() {
