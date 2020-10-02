@@ -1,0 +1,9 @@
+.sb-conversion-block {
+    background-color: #eeeeee;
+    padding: 20px 30px;
+    color: #333333;
+}
+
+.sb-conversion-block + .sb-conversion-block {
+    margin-top: 10px;
+}
