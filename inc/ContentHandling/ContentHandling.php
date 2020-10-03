@@ -198,6 +198,9 @@ class ContentHandling {
     private function resolve_block() {
         $this->off(); // Remove hook while getting the content of the blocks
 
+        global $post;
+        $original_post = $post;
+
         $query = [
             'orderby'        => 'rand',
             'posts_per_page' => 1,
@@ -212,9 +215,13 @@ class ContentHandling {
         $posts = get_posts($query);
         $post = current($posts);
 
-        if ( ! is_a($post, 'WP_Post') ) return false;
+        if ( ! is_a($post, 'WP_Post') ) {
+            $post = $original_post;
+            return false;
+        }
 
         $content = $this->get_post_content($post);
+        $post = $original_post;
 
         if ( ! $content ) return false;
 
