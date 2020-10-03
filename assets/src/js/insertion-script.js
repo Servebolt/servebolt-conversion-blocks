@@ -245,13 +245,11 @@ function sb_placeBlock(block, element, position) {
  */
 function sb_displayBlock(block) {
     sb_unwrapElement(block);
-    //block.classList.add('sb-conversion-block-placed');
-    //block.removeAttribute('style');
 }
 
 /**
  * Remove the block wrapper so that we are Gutenberg-compatible with the block-elements.
- * 
+ *
  * @param wrapper
  */
 function sb_unwrapElement(wrapper) {
@@ -269,7 +267,7 @@ function sb_unwrapElement(wrapper) {
  * @returns {[]}
  */
 function sb_getElements(parentContainer) {
-    var elements = parentContainer.querySelectorAll(':scope > *:not(.' + sb_conv_blocks_class + '):not(.sb-conversion-block-placed)'),
+    var elements = parentContainer.querySelectorAll(':scope > *:not(.' + sb_conv_blocks_class + ')'),
         filteredElements = [];
     [].forEach.call(elements, function(element) {
         if ( sb_elementShouldBeIncluded(element) ) {
@@ -311,7 +309,7 @@ function sb_elementShouldBeIncluded(element) {
  * @returns {NodeListOf<Element>}
  */
 function sb_getBlocks() {
-    return document.querySelectorAll('.' + sb_conv_blocks_class + ':not(.sb-conversion-block-placed)');
+    return document.querySelectorAll('.' + sb_conv_blocks_class);
 }
 
 /**
