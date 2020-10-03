@@ -244,8 +244,23 @@ function sb_placeBlock(block, element, position) {
  * @param block
  */
 function sb_displayBlock(block) {
-    block.classList.add('sb-conversion-block-placed');
-    block.removeAttribute('style');
+    sb_unwrapElement(block);
+    //block.classList.add('sb-conversion-block-placed');
+    //block.removeAttribute('style');
+}
+
+/**
+ * Remove the block wrapper so that we are Gutenberg-compatible with the block-elements.
+ * 
+ * @param wrapper
+ */
+function sb_unwrapElement(wrapper) {
+    var docFrag = document.createDocumentFragment();
+    while (wrapper.firstChild) {
+        var child = wrapper.removeChild(wrapper.firstChild);
+        docFrag.appendChild(child);
+    }
+    wrapper.parentNode.replaceChild(docFrag, wrapper);
 }
 
 /**

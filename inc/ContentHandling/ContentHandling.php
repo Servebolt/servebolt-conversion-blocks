@@ -36,7 +36,7 @@ class ContentHandling {
      *
      * @var int
      */
-    private $max_block_numbers = 1;
+    private $max_block_count = 1;
 
     /**
      * Blocks that are already displayed.
@@ -89,13 +89,13 @@ class ContentHandling {
      * @param $content
      * @return mixed
      */
-    public function add_block_to_content($content) {
+    public function add_blocks_to_content($content) {
 
         if ( ! apply_filters('sb_conversion_block_is_active', $this->is_active(), get_the_ID()) ) {
             return $content;
         }
 
-        for ($i = 1; $i <= $this->get_max_block_number(); $i++) {
+        for ($i = 1; $i <= $this->get_max_block_count(); $i++) {
 
             if ( $block = $this->resolve_block() ) {
                 $this->increment_block_count();
@@ -143,8 +143,8 @@ class ContentHandling {
      *
      * @return mixed|void
      */
-    private function get_max_block_number() {
-        return apply_filters('sb_conversion_block_max_number_of_conversion_blocks', $this->max_block_numbers);
+    private function get_max_block_count() {
+        return apply_filters('sb_conversion_block_max_number_of_conversion_blocks', $this->max_block_count);
     }
 
     /**
@@ -171,14 +171,14 @@ class ContentHandling {
      * Add content altering filter.
      */
     public function on() {
-        add_action('the_content', [$this, 'add_block_to_content']);
+        add_action('the_content', [$this, 'add_blocks_to_content']);
     }
 
     /**
      * Remove content altering filter.
      */
     private function off() {
-        remove_action('the_content', [$this, 'add_block_to_content']);
+        remove_action('the_content', [$this, 'add_blocks_to_content']);
     }
 
     /**
